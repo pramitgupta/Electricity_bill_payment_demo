@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PowerGrid Utilities - Electricity Bill Payment</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #002244;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Banner Section */
+        .banner {
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), 
+                        url('https://images.unsplash.com/photo-1581092333200-4a5b0c02369a');
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 20px;
+        }
+
+        .banner-content h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        /* Quick Actions Section */
+        .quick-actions {
+            padding: 50px 20px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .action-card {
+            background-color: #f5f5f5;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .action-card h2 {
+            color: #002244;
+            margin-bottom: 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 30px;
+            background-color: #002244;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #002244;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .social-links {
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            color: white;
+            margin: 0 10px;
+            font-size: 1.2em;
+        }
+
+        @media (max-width: 768px) {
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .banner {
+                height: 300px;
+            }
+
+            .banner-content h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <img src="company-logo.png" alt="PowerGrid Utilities Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="payment.html">Pay Bill</a></li>
+                <li><a href="consumption.html">Consumption</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Main Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <h1>Welcome to PowerGrid Utilities</h1>
+            <p>Quick and secure electricity bill payments</p>
+            <a href="payment.html" class="btn">Pay Your Bill Now</a>
+        </div>
+    </section>
+
+    <!-- Quick Actions Section -->
+    <section class="quick-actions">
+        <div class="action-card">
+            <h2>Pay Electricity Bill</h2>
+            <p>Instant online payment with multiple payment options</p>
+            <a href="payment.html" class="btn">Pay Now</a>
+        </div>
+        
+        <div class="action-card">
+            <h2>View Consumption</h2>
+            <p>Check your energy usage history and statistics</p>
+            <a href="consumption.html" class="btn">View Details</a>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 PowerGrid Utilities. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>24/7 Customer Support: 1800-123-4567</p>
+        </div>
+    </footer>
+</body>
+</html>

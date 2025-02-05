@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Details - PowerGrid Utilities</title>
+    <style>
+        /* Reuse previous styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header, footer {
+            background-color: #002244;
+        }
+
+        /* Payment Details Styling */
+        .payment-details {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .error-message {
+            color: #dc3545;
+            background-color: #f8d7da;
+            padding: 20px;
+            border-radius: 5px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .bill-details {
+            margin-bottom: 30px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 15px;
+            padding: 10px;
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #002244;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #002244;
+        }
+
+        .btn-submit {
+            background-color: #002244;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #003366;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <img src="company-logo.png" alt="PowerGrid Utilities Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="payment.html">Pay Bill</a></li>
+                <li><a href="consumption.html">Consumption</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <div class="payment-details">
+            <h1>Payment Details</h1>
+            <div id="errorSection" class="error-message" style="display: none;">
+                Invalid Customer ID! Please enter a valid 8-digit number.
+                <br>
+                <a href="payment.html" class="btn-submit" style="margin-top: 15px; display: inline-block;">
+                    Try Again
+                </a>
+            </div>
+
+            <div id="paymentSection" style="display: none;">
+                <div class="bill-details">
+                    <h2>Bill Summary</h2>
+                    <div class="detail-row">
+                        <span>Customer ID:</span>
+                        <span id="displayCustomerId"></span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Customer Name:</span>
+                        <span>John Doe</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Due Amount:</span>
+                        <span>$125.50</span>
+                    </div>
+                    <div class="detail-row">
+                        <span>Due Date:</span>
+                        <span>2023-12-25</span>
+                    </div>
+                </div>
+
+                <form class="payment-form" onsubmit="return processPayment(event)">
+                    <div class="form-group">
+                        <label for="cardNumber">Card Number:</label>
+                        <input 
+                            type="text" 
+                            id="cardNumber" 
+                            placeholder="1234 5678 9012 3456"
+                            required
+                            pattern="\d{16}"
+                            title="Please enter 16-digit card number"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="expiryDate">Expiry Date:</label>
+                        <input 
+                            type="month" 
+                            id="expiryDate" 
+                            required
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="cvv">CVV:</label>
+                        <input 
+                            type="text" 
+                            id="cvv" 
+                            placeholder="123"
+                            required
+                            pattern="\d{3}"
+                            title="3-digit CVV"
+                        >
+                    </div>
+
+                    <button type="submit" class="btn-submit">Confirm Payment</button>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 PowerGrid Utilities. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>24/7 Customer Support: 1800-123-4567</p>
+        </div>
+    </footer>
+
+    <script>
+        // Get customer ID from URL parameters
+        const urlParams = new URLSearchParams(window.location.search);
+        const customerId = urlParams.get('customerId');
+
+        // DOM Elements
+        const errorSection = document.getElementById('errorSection');
+        const paymentSection = document.getElementById('paymentSection');
+        const displayCustomerId = document.getElementById('displayCustomerId');
+
+        // Validation function
+        function isValidCustomerId(id) {
+            return /^\d{8}$/.test(id);
+        }
+
+        // On page load
+        window.onload = function() {
+            if (customerId && isValidCustomerId(customerId)) {
+                displayCustomerId.textContent = customerId;
+                paymentSection.style.display = 'block';
+            } else {
+                errorSection.style.display = 'block';
+            }
+        };
+
+        // Payment processing function
+        function processPayment(event) {
+            event.preventDefault();
+            
+            // Simple validation
+            const cardNumber = document.getElementById('cardNumber').value;
+            const cvv = document.getElementById('cvv').value;
+            
+            if (cardNumber.length !== 16 || !/^\d+$/.test(cardNumber)) {
+                alert('Please enter a valid 16-digit card number');
+                return false;
+            }
+
+            if (cvv.length !== 3 || !/^\d+$/.test(cvv)) {
+                alert('Please enter a valid 3-digit CVV');
+                return false;
+            }
+
+            // Simulate payment processing
+            alert('Payment successful! Thank you for your payment.');
+            window.location.href = 'payment_success.html';
+            return false;
+        }
+    </script>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>

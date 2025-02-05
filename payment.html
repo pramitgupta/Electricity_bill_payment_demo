@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pay Electricity Bill - PowerGrid Utilities</title>
+    <style>
+        /* Reuse the same styles from homepage */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+
+        header {
+            background-color: #002244;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            width: 200px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* Payment Form Styling */
+        .payment-container {
+            max-width: 800px;
+            margin: 50px auto;
+            padding: 30px;
+            background-color: #f5f5f5;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .payment-form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            color: #002244;
+            font-weight: bold;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #002244;
+        }
+
+        .btn-submit {
+            background-color: #002244;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+
+        .btn-submit:hover {
+            background-color: #003366;
+        }
+
+        /* Instructions Section */
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .instructions h3 {
+            color: #002244;
+            margin-bottom: 15px;
+        }
+
+        /* Footer Styles (same as homepage) */
+        footer {
+            background-color: #002244;
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        @media (max-width: 768px) {
+            .payment-container {
+                margin: 30px 15px;
+                padding: 20px;
+            }
+            
+            nav ul {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header (same as homepage) -->
+    <header>
+        <img src="company-logo.png" alt="PowerGrid Utilities Logo" class="logo">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="payment.html">Pay Bill</a></li>
+                <li><a href="consumption.html">Consumption</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Payment Form Section -->
+    <main>
+        <div class="payment-container">
+            <h1>Electricity Bill Payment</h1>
+            <p>Please enter your Customer ID to proceed</p>
+            
+            <form class="payment-form" action="payment-details.html" method="GET">
+                <div class="form-group">
+                    <label for="customerId">Customer ID:</label>
+                    <input 
+                        type="text" 
+                        id="customerId" 
+                        name="customerId"
+                        placeholder="Enter your 8-digit Customer ID"
+                        required
+                        pattern="[0-9]{8}"
+                        title="Please enter 8-digit number"
+                    >
+                </div>
+                
+                <button type="submit" class="btn-submit">Proceed to Payment</button>
+            </form>
+
+            <div class="instructions">
+                <h3>Where to find your Customer ID?</h3>
+                <ul>
+                    <li>Check your previous bill statement</li>
+                    <li>Look for the 8-digit number at the top of your bill</li>
+                    <li>Contact customer support if you can't find it</li>
+                </ul>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer (same as homepage) -->
+    <footer>
+        <div class="footer-content">
+            <p>© 2023 PowerGrid Utilities. All rights reserved.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+            </div>
+            <p>24/7 Customer Support: 1800-123-4567</p>
+        </div>
+    </footer>
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</body>
+</html>
